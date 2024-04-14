@@ -1,0 +1,4 @@
+Last Update 20240414 23:42  
+  
+Change directory for more intuitive control  
+Change upload cloud save player data from List<Dictionaly<string, object>> to Dictionaly<string, Dictionaly<string, object>>
