@@ -65,9 +65,9 @@ public class MainManager : MonoBehaviour
 
         if (b)
         {
-            txtMoney.text = RM().GetItem("money", "stack").ToString();
-            txtPoint.text = RM().GetItem("point", "stack").ToString();
-            txtCash.text = RM().GetItem("cash", "stack").ToString();
+            txtMoney.text = RM().GetItemStack("money").ToString();
+            txtPoint.text = RM().GetItemStack("point").ToString();
+            txtCash.text = RM().GetItemStack("cash").ToString();
         }
     }
 }

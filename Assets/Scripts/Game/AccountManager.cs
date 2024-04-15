@@ -322,21 +322,12 @@ public class AccountManager : MonoBehaviour
     public async void SetDefaultLocker()
     {
         Dictionary<string, object> data = new Dictionary<string, object>();
-        Dictionary<string, object> locker = new Dictionary<string, object>();
-        Dictionary<string, Dictionary<string, object>> items = new Dictionary<string, Dictionary<string, object>>();
-
-        items.Add("money", new Dictionary<string, object>());
-        items["money"].Add("stack", 100000);
-
-        items.Add("point", new Dictionary<string, object>());
-        items["point"].Add("stack", 1000);
-
-        items.Add("cash", new Dictionary<string, object>());
-        items["cash"].Add("stack", 1);
-
-        locker.Add("money", items["money"]);
-        locker.Add("point", items["point"]);
-        locker.Add("cash", items["cash"]);
+        Dictionary<string, object> locker = new Dictionary<string, object>()
+        {
+            { "money", 100000 },
+            { "point", 1000 },
+            { "cash", 1 }
+        };
 
         data.Add("Locker", locker);
 
