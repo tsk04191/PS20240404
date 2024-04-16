@@ -69,5 +69,11 @@ public class MainManager : MonoBehaviour
             txtPoint.text = RM().GetItemStack("point").ToString();
             txtCash.text = RM().GetItemStack("cash").ToString();
         }
+
+        RM().AddItemStack("testitem", 1, 1, 10);
+        RM().AddItemStack("testitem", 1, 0, 5);
+        Debug.Log(RM().GetItemStack("testitem"));
+        Debug.Log(RM().GetItemStack("testitem", 1, 1));
+        Debug.Log(RM().GetItemStack("testitem", 1, 0));
     }
 }

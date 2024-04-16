@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     private async void OnApplicationQuit()
     {
+        RM().UpLoadLocker();
+
         var data = new Dictionary<string, object>
         {
             { "LastAccessTime", Time.captureDeltaTime },

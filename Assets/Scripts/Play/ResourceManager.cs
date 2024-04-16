@@ -41,6 +41,14 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+    public async void UpLoadLocker()
+    {
+        Dictionary<string, object> data = new Dictionary<string, object>();
+        data.Add("Locker", Locker);
+
+        await CloudSaveService.Instance.Data.Player.SaveAsync(data);
+    }
+
     public int GetItemStack(string item, int tier = -1, int enchant = -1)
     {
         int stack = 0;
@@ -90,6 +98,14 @@ public class ResourceManager : MonoBehaviour
     {
         if (!Locker.ContainsKey(item))
         {
+            List<Dictionary<string, object>> variations = new List<Dictionary<string, object>>();
+            variations.Add(new Dictionary<string, object>
+            {
+                { "tier", tier },
+                { "enchant", enchant },
+                { "stack", value }
+            });
+            Locker.Add(item, JArray.Parse(JsonConvert.SerializeObject(variations)));
             return;
         }
 
@@ -104,8 +120,18 @@ public class ResourceManager : MonoBehaviour
                     if (int.Parse(stack["tier"].ToString()) == tier && int.Parse(stack["enchant"].ToString()) == enchant)
                     {
                         stack["stack"] = int.Parse(stack["stack"].ToString()) + value;
+                        value = 0;
                     }
                 }
+
+                if (value != 0)
+                {
+                    variations.Add(new Dictionary<string, object>());
+                    variations[variations.Count - 1].Add("tier", tier);
+                    variations[variations.Count - 1].Add("enchant", enchant);
+                    variations[variations.Count - 1].Add("stack", value);
+                }
+
                 Locker[item] = JArray.Parse(JsonConvert.SerializeObject(variations));
             }
         }
